@@ -54,7 +54,8 @@ def predict():
         predictions = make_predictions(model, data_scaled)
 
         response = {
-            "predictions": predictions.flatten().tolist()
+            "predictions": predictions.flatten().tolist(),
+            "Will it flood?": ["Yes" if p > 0.5 else "No" for p in predictions.flatten()]
         }
         return jsonify(response), 200
 
